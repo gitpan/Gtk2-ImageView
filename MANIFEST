@@ -12,6 +12,8 @@ ImageView.xs
 Zoom.xs
 Makefile.PL
 AUTHORS
+COPYING
+README
 MANIFEST
 INSTALL
 maps
