@@ -116,6 +116,7 @@ newSVGdkPixbufDrawCache (GdkPixbufDrawCache * cache)
   return newRV_noinc ((SV *) hv);
 }
 
+
 /*
  * returns a pointer to a GdkPixbufDrawCache you can use until control returns
  * to perl.

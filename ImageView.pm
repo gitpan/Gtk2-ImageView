@@ -2,7 +2,7 @@ package Gtk2::ImageView;
 use Gtk2;
 require DynaLoader;
 our @ISA = qw(DynaLoader);
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 sub dl_load_flags {0x01};
 bootstrap Gtk2::ImageView $VERSION;
 1;

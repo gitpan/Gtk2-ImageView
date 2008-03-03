@@ -5,16 +5,23 @@ use File::Spec;
 
 # minimum required version of dependancies we need to build
 our %build_reqs = (
-	'perl-ExtUtils-Depends'   => '0.1',
-	'perl-ExtUtils-PkgConfig' => '0.1',
-	'perl-Glib'               => '1.00',
-	'perl-Gtk2'               => '1.00',
+	'perl-ExtUtils-Depends'   => '0.2',
+	'perl-ExtUtils-PkgConfig' => '1.03',
+	'perl-Glib'               => '1.140',
+	'perl-Gtk2'               => '1.140',
 	'GtkImageView'            => '1.6.0',
 );
 
 # minimum required version of dependancies we need to run
 our %runtime_reqs = (
 	'GtkImageView' => undef,
+);
+
+our %PREREQ_PM = (
+  'ExtUtils::Depends'   => $build_reqs{'perl-ExtUtils-Depends'},
+  'ExtUtils::PkgConfig' => $build_reqs{'perl-ExtUtils-PkgConfig'},
+  'Glib'                => $build_reqs{'perl-Glib'},
+  'Gtk2'                => $build_reqs{'perl-Gtk2'},
 );
 
 # Writing a fake Makefile ensures that CPAN will pick up the correct
@@ -31,12 +38,7 @@ unless (eval "use ExtUtils::Depends;"
    warn "$@\n";
    WriteMakefile(
          PREREQ_FATAL => 1,
-         PREREQ_PM    => {
-            Glib::                => $build_reqs{'perl-Glib'},
-            Gtk2::                => $build_reqs{'perl-Gtk2'},
-            ExtUtils::Depends::   => $build_reqs{'perl-ExtUtils-Depends'},
-            ExtUtils::PkgConfig:: => $build_reqs{'perl-ExtUtils-PkgConfig'},
-         },
+         PREREQ_PM    => \%PREREQ_PM,
    );
    exit 1; # not reached
 }
@@ -81,14 +83,46 @@ $depends->install (@headers);
 
 $depends->save_config ('build/IFiles.pm');
 
+# As soon as a stable release with Glib::MakeHelper->get_configure_requires_yaml
+# hits Sid, change use it, and take out the sub below.
+#   my $configure_requires =
+#                      Glib::MakeHelper->get_configure_requires_yaml(%PREREQ_PM);
+my $configure_requires = get_configure_requires_yaml(%PREREQ_PM);
+
 WriteMakefile(
     NAME            => 'Gtk2::ImageView',
     VERSION_FROM    => 'ImageView.pm', # finds $VERSION
     ABSTRACT        => 'Perl bindings for the GtkImageView widget',
+    AUTHOR          => 'Jeffrey Ratcliffe',
+    LICENSE         => 'gpl',
+    PREREQ_PM       => \%PREREQ_PM,
     XSPROTOARG      => '-noprototypes',
     MAN3PODS        => \%pod_files,
     $depends->get_makefile_vars,
+    EXTRA_META      => qq/
+$configure_requires
+/,
 );
+
+
+# Stolen from Glib-Perl HEAD
+# Generates YAML code that lists every module found in I<%module_to_version>
+# under the C<configure_requires> key.  This can be used with
+# I<ExtUtils::MakeMaker>'s C<EXTRA_META> parameter to specify which modules are
+# needed at I<Makefile.PL> time.
+
+sub get_configure_requires_yaml {
+#  shift; # package name
+  my %prereqs = @_;
+
+  my $yaml = "configure_requires:\n";
+  while (my ($module, $version) = each %prereqs) {
+    $yaml .= "   $module: $version\n";
+  }
+
+  return $yaml;
+}
+
 
 package MY;
 
