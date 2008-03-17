@@ -1,16 +1,16 @@
 Gtk2::ImageView
 ===============
 
-Gtk2::ImageView provides Perl bindings Gtk+ widget gtkimageview.
-Find out more about gtkimageview at http://trac.bjourne.webfactional.com/.
+Perl bindings to the GtkImageView image viewer widget
+Find out more about GtkImageView at http://trac.bjourne.webfactional.com/.
 
-Be sure to check out the example program in the "examples" directory.
+The Perl bindings follow the C API very closely, and the C reference
+should be considered the canonical documentation.
 
-To discuss gtk2-perl, ask questions and flame/praise the authors,
-join gtk-perl-list@gnome.org at lists.gnome.org.
+Be sure to check out the example programs in the "examples" directory.
 
-Also have a look at the gtk2-perl website and sourceforge project page,
-http://gtk2-perl.sourceforge.net
+To discuss Gtk2::ImageView or gtk2-perl, ask questions and flame/praise the
+authors, join gtk-perl-list@gnome.org at lists.gnome.org.
 
 
 INSTALLATION
@@ -45,6 +45,13 @@ ways:
   in the code of your perl script:
     use lib '/some/other/place/lib/perl5/site_perl';
 
+To build the documentation as html, run:
+
+  make html
+
+Note that the bindings must first have been built and that the
+mpod2html script must be installed.
+  
 
 DEPENDENCIES
 ------------
@@ -54,6 +61,7 @@ This module requires these other modules and libraries:
   perl >= 5.8.0
   Glib >= 1.163 (Perl module)
   GTK+ > 2.x (C library)
+  GtkImageView >= 1.6.0
 
 If GTK+ is as new or newer as 2.8, the Cairo module is also required:
 
@@ -68,22 +76,26 @@ In order to build it from source, you'll also need
 BUG REPORTS
 -----------
 
+Please submit bug reports top
+http://trac.bjourne.webfactional.com/newticket/.
 
 
 COPYRIGHT AND LICENSE
 ---------------------
 
-Copyright (C) 2006 - 2008 Jeffrey Ratcliffe <Jeffrey.Ratcliffe@gmail.com>
+Copyright (c) 2007 -- 2008 by Jeffrey Ratcliffe <Jeffrey.Ratcliffe@gmail.com>
+see AUTHORS for complete list of contributors
 
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License version 3 as published by
-   the Free Software Foundation.
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 3 of the License, or (at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Library General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software Foundation, Inc.,
-   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+You should have received a copy of the GNU Lesser General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+

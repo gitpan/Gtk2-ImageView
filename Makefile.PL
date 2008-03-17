@@ -94,7 +94,7 @@ WriteMakefile(
     VERSION_FROM    => 'ImageView.pm', # finds $VERSION
     ABSTRACT        => 'Perl bindings for the GtkImageView widget',
     AUTHOR          => 'Jeffrey Ratcliffe',
-    LICENSE         => 'gpl',
+    LICENSE         => 'lgpl',
     PREREQ_PM       => \%PREREQ_PM,
     XSPROTOARG      => '-noprototypes',
     MAN3PODS        => \%pod_files,
@@ -127,6 +127,23 @@ sub get_configure_requires_yaml {
 package MY;
 
 sub postamble {
+ my $postamble = <<'END';
+
+realclean ::
+	-rm -Rf build
+
+html : blib/lib/Gtk2/
+	mpod2html blib/lib/Gtk2/                   \
+            -nowarnings -noverbose                              \
+            -dir "html" -nobanner                               \
+            -idxname "idx" -tocname "index"                     \
+            -toctitle "Gtk2-ImageView Table of Contents"        \
+            -idxtitle "Gtk2-ImageView Index"                    \
+            -stylesheet "style.css" 
+	perl -ni -e'print unless m/^(Cannot find page|Warning:)/;' \
+           `find html -name "*.html"`    
+	find html -type d -exec cp style.css {} \;
+END
 	return Glib::MakeHelper->postamble_clean ()
              . Glib::MakeHelper->postamble_docs_full (
 		DEPENDS => $depends,
@@ -141,9 +158,6 @@ sub postamble {
  		'PERL_GLIB' => $build_reqs{'perl-Glib'},
  		'PERL_GTK' => $build_reqs{'perl-Gtk2'},
  	       )
- 	     ."
-realclean ::
-	-rm -Rf build
-";
+ 	     .$postamble;
 }
 package MAIN;

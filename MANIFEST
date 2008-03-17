@@ -12,7 +12,7 @@ ImageView.xs
 Zoom.xs
 Makefile.PL
 AUTHORS
-COPYING
+COPYING.LESSER
 README
 MANIFEST
 INSTALL
@@ -26,4 +26,5 @@ t/imagescrollwin.t
 t/imagetooldragger.t
 t/imagetoolpainter.t
 t/imagetoolselector.t
+style.css
 META.yml                                 Module meta-data (added by MakeMaker)
