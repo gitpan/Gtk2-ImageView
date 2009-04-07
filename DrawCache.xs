@@ -152,7 +152,10 @@ SvGdkPixbufDrawCache (SV * sv)
 
 MODULE = Gtk2::Gdk::Pixbuf::Draw::Cache  PACKAGE = Gtk2::Gdk::Pixbuf::Draw::Cache  PREFIX = gdk_pixbuf_draw_cache_
 
-=for object Gtk2::Gdk::Pixbuf::Draw::Cache - Cache for drawing scaled pixbufs
+=for object Gtk2::Gdk::Pixbuf::Draw::Cache Cache for drawing scaled pixbufs
+=cut
+
+=for position DESCRIPTION
 
 =head1 DESCRIPTION
 
@@ -162,17 +165,7 @@ Gtk2::ImageView::Tool when redrawing the Gtk2::ImageView.
 =cut
 
 =for apidoc
-
-Creates a new pixbuf draw cache.
-
-=head3 Returns
-
-=over
-
-=item a new Gtk2::Gdk::Pixbuf::Draw::Cache
-
-=back
-
+Returns a new pixbuf draw cache.
 =cut
 GdkPixbufDrawCache *
 gdk_pixbuf_draw_cache_new (class)
@@ -181,7 +174,6 @@ gdk_pixbuf_draw_cache_new (class)
 
 
 =for apidoc
-
 Deallocates a pixbuf draw cache and all its data.
 
 =cut
@@ -191,12 +183,15 @@ gdk_pixbuf_draw_cache_free (cache)
 
 
 =for apidoc
-
 Force the pixbuf draw cache to scale the pixbuf at the next draw.
 
-Gtk2::Gdk::Pixbuf::Draw::Cache tries to minimize the number of scale operations needed by caching the last drawn pixbuf. It would be inefficient to check the individual pixels inside the pixbuf so it assumes that if the memory address of the pixbuf has not changed, then the cache is good to use.
+Gtk2::Gdk::Pixbuf::Draw::Cache tries to minimize the number of scale operations
+needed by caching the last drawn pixbuf. It would be inefficient to check the
+individual pixels inside the pixbuf so it assumes that if the memory address of
+the pixbuf has not changed, then the cache is good to use.
 
-However, when the image data is modified, this assumtion breaks, which is why this method must be used to tell draw cache about it.
+However, when the image data is modified, this assumtion breaks, which is why
+this method must be used to tell draw cache about it.
 
 =cut
 void
@@ -205,8 +200,8 @@ gdk_pixbuf_draw_cache_invalidate (cache)
 
 
 =for apidoc
-
-Redraws the area specified in the pixbuf draw options in an efficient way by using caching.
+Redraws the area specified in the pixbuf draw options in an efficient way by
+using caching.
 
 =over
 
@@ -227,25 +222,8 @@ gdk_pixbuf_draw_cache_draw (cache, opts, drawable)
 
 
 =for apidoc
-
-Gets the fastest method to draw the specified draw options. old is assumed to be the last PixbufDrawOpts used and new is the one to use this time.
-
-=over
-
-=item old : the last draw options used
-
-=item new : the current draw options
-
-=back
-
-=head3 Returns
-
-=over
-
-=item the best draw method to use to draw
-
-=back
-
+Gets the fastest method to draw the specified draw options. old is assumed to be
+the last PixbufDrawOpts used and new is the one to use this time.
 =cut
 GdkPixbufDrawMethod
 gdk_pixbuf_draw_cache_get_method (class, old, new)

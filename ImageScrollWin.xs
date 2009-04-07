@@ -7,33 +7,20 @@ MODULE = Gtk2::ImageView::ScrollWin  PACKAGE = Gtk2::ImageView::ScrollWin  PREFI
 
 =head1 DESCRIPTION
 
-Gtk2::ImageView::ScrollWin provides a widget similar in appearance to Gtk2::ScrollWin that is more suitable for displaying Gtk2::ImageView's.
+Gtk2::ImageView::ScrollWin provides a widget similar in appearance to
+Gtk2::ScrollWin that is more suitable for displaying Gtk2::ImageView's.
 
 =cut
 
 
 =for apidoc
+Returns a new Gtk2::ImageView::ScrollWin containing the Gtk2::ImageView.
 
-Creates a new Gtk2::ImageView::ScrollWin containing the Gtk2::ImageView.
-
-The widget is built using four subwidgets arranged inside a Gtk2::Table with two columns and two rows. Two scrollbars, one navigator button (the decorations) and one Gtk2::ImageView.
+The widget is built using four subwidgets arranged inside a Gtk2::Table with two
+columns and two rows. Two scrollbars, one navigator button (the decorations) and
+one Gtk2::ImageView.
 
 When the Gtk2::ImageView fits inside the window, the decorations are hidden.
-
-=over
-
-=item view : a Gtk2::ImageView to show.
-
-=back
-
-=head3 Returns
-
-=over
-
-=item A new Gtk2::ImageView::ScrollWin.
-
-=back
-
 =cut
 GtkWidget_ornull *
 gtk_image_scroll_win_new (class, view)

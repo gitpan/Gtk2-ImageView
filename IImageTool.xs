@@ -2,7 +2,10 @@
 
 MODULE = Gtk2::ImageView::Tool  PACKAGE = Gtk2::ImageView::Tool  PREFIX = gtk_iimage_tool_
 
-=for object Gtk2::ImageView::Tool
+=for object Gtk2::ImageView::Tool Interface for objects capable of being used as tools by Gtk2::ImageView
+=cut
+
+=for position DESCRIPTION
 
 =head1 DESCRIPTION
 
@@ -42,8 +45,9 @@ gtk_iimage_tool_motion_notify (tool, ev)
 
 
 =for apidoc
-
-Indicate to the tool that either a part of, or the whole pixbuf that the image view shows has changed. This method is called by the view whenever its pixbuf or its tool changes. That is, when any of the following methods are used:
+Indicate to the tool that either a part of, or the whole pixbuf that the image
+view shows has changed. This method is called by the view whenever its pixbuf or
+its tool changes. That is, when any of the following methods are used:
 
 =over
 
@@ -55,7 +59,8 @@ Indicate to the tool that either a part of, or the whole pixbuf that the image v
 
 =back
 
-If the reset_fit parameter is TRUE, it means that a new pixbuf has been loaded into the view.
+If the reset_fit parameter is TRUE, it means that a new pixbuf has been loaded
+into the view.
 
 =over
 
@@ -76,19 +81,8 @@ gtk_iimage_tool_pixbuf_changed (tool, reset_fit, rect)
 
 
 =for apidoc
-
-Called whenever the image view decides that any part of the image it shows needs to be redrawn.
-
-=over
-
-=item tool : the tool
-
-=item opts : the Gtk2::Gdk::Pixbuf::DrawOpts to use in this draw
-
-=item drawable : a Gtk2::Gdk::Drawable to draw on
-
-=back
-
+Called whenever the image view decides that any part of the image it shows needs
+to be redrawn.
 =cut
 void
 gtk_iimage_tool_paint_image (tool, opts, drawable)
@@ -98,27 +92,7 @@ gtk_iimage_tool_paint_image (tool, opts, drawable)
 
 
 =for apidoc
-
-Ask the tool what cursor it wants displayed.
-
-=over
-
-=item tool : the tool
-
-=item x : the mouse pointers X-coordinate
-
-=item y : the mouse pointers Y-coordinate
-
-=back
-
-=head3 Returns
-
-=over
-
-=item The appropriate cursor.
-
-=back
-
+Returns the cursor to display at the given coordinates.
 =cut
 GdkCursor *
 gtk_iimage_tool_cursor_at_point (tool, x, y)

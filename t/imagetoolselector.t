@@ -5,7 +5,7 @@
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 6;
+use Test::More tests => 7;
 
 BEGIN {
  use Glib qw/TRUE FALSE/;
@@ -28,6 +28,8 @@ isa_ok($selector, 'Gtk2::ImageView::Tool::Selector');
 
 my $rectangle = $selector->get_selection;
 ok(! defined $rectangle, 'get_selection() initially undefined');
+
+ok(! eval {$selector->set_selection(undef)}, '$selector->set_selection(undef) throws error' );
 
 $rectangle = Gtk2::Gdk::Rectangle->new(0,0,10,10);
 $selector->set_selection($rectangle);

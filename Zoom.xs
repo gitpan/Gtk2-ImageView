@@ -17,23 +17,7 @@ GtkImageView uses a discrete amount of zoom factors for determining which zoom t
 
 
 =for apidoc
-
 Returns the zoom factor that is one step larger than the supplied zoom factor.
-
-=over
-
-=item zoom : A zoom factor.
-
-=back
-
-=head3 Returns
-
-=over
-
-=item a zoom factor that is one step larger than the supplied one
-
-=back
-
 =cut
 ## call as $zoom = Gtk2::ImageView::Zoom->get_zoom_in($zoom)
 ## gdouble gtk_zooms_get_zoom_in(gdouble zoom);
@@ -45,23 +29,7 @@ gtk_zooms_get_zoom_in (class, zoom)
 
 
 =for apidoc
-
 Returns the zoom factor that is one step smaller than the supplied zoom factor.
-
-=over
-
-=item zoom : A zoom factor.
-
-=back
-
-=head3 Returns
-
-=over
-
-=item a zoom factor that is one step smaller than the supplied one.
-
-=back
-
 =cut
 ## call as $zoom = Gtk2::ImageView::Zoom->get_zoom_out($zoom)
 ## gdouble gtk_zooms_get_zoom_out(gdouble zoom);
@@ -73,17 +41,7 @@ gtk_zooms_get_zoom_out (class, zoom)
 
 
 =for apidoc
-
 Returns the minimum allowed zoom factor.
-
-=head3 Returns
-
-=over
-
-=item The minimal zoom factor.
-
-=back
-
 =cut
 ## call as $zoom = Gtk2::ImageView::Zoom->get_min_zoom
 ## gdouble gtk_zooms_get_min_zoom(void);
@@ -94,17 +52,7 @@ gtk_zooms_get_min_zoom (class)
 
 
 =for apidoc
-
 Returns the maximum allowed zoom factor.
-
-=head3 Returns
-
-=over
-
-=item The maximal zoom factor.
-
-=back
-
 =cut
 ## call as $zoom = Gtk2::ImageView::Zoom->get_max_zoom
 ## gdouble gtk_zooms_get_max_zoom(void);
@@ -115,23 +63,7 @@ gtk_zooms_get_max_zoom (class)
 
 
 =for apidoc
-
-Returns the zoom factor clamped to the minumum and maximum allowed value.
-
-=over
-
-=item zoom : A zoom factor.
-
-=back
-
-=head3 Returns
-
-=over
-
-=item The zoom factor clamped to the interval [min, max].
-
-=back
-
+Returns the zoom factor clamped to the minumum and maximum allowed values.
 =cut
 ## call as $zoom = Gtk2::ImageView::Zoom->clamp_zoom($zoom)
 ## gdouble gtk_zooms_clamp_zoom(gdouble zoom;
